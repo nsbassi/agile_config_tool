@@ -89,9 +89,9 @@ Ext.define("AgileAcpt.view.datafix.DataFixPanel", {
       allowBlank: false,
       buttonText: "Browse...",
       emptyText: "Select data fix script file",
-      accept: ".sql,.txt",
-      regex: /\.(sql|txt)$/i,
-      regexText: "Only SQL or TXT files are allowed",
+      accept: ".sh",
+      regex: /\.sh$/i,
+      regexText: "Only SH (shell script) files are allowed",
     },
     {
       xtype: "filefield",
@@ -118,21 +118,25 @@ Ext.define("AgileAcpt.view.datafix.DataFixPanel", {
         var form = btn.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          
+
           // Get the input file field and extract the actual filename
-          var inputFileField = form.findField('inputFile');
+          var inputFileField = form.findField("inputFile");
           var inputFile = null;
-          
-          if (inputFileField && inputFileField.fileInputEl && inputFileField.fileInputEl.dom.files.length > 0) {
+
+          if (
+            inputFileField &&
+            inputFileField.fileInputEl &&
+            inputFileField.fileInputEl.dom.files.length > 0
+          ) {
             inputFile = inputFileField.fileInputEl.dom.files[0].name;
           }
-          
+
           // If still no inputFile, show error
           if (!inputFile) {
             Ext.Msg.alert("Error", "Please select an input file");
             return;
           }
-          
+
           Ext.Ajax.request({
             url: "/api/jobs/datafix/run",
             method: "POST",
@@ -147,16 +151,13 @@ Ext.define("AgileAcpt.view.datafix.DataFixPanel", {
             },
             success: function (response) {
               var data = Ext.decode(response.responseText);
-              Ext.Msg.alert(
-                "Success",
-                "Data Fix job started with ID: " + data.jobId
-              );
-              
-              // Switch to Jobs panel
-              var mainView = Ext.ComponentQuery.query("mainview")[0];
-              if (mainView && mainView.getViewModel()) {
-                mainView.getViewModel().set("currentView", "jobs-panel");
-              }
+              Ext.Msg.alert("Success", "Data Fix job started with ID: " + data.jobId, function () {
+                // Switch to Jobs panel after user clicks OK
+                var mainView = Ext.ComponentQuery.query("mainview")[0];
+                if (mainView && mainView.getViewModel()) {
+                  mainView.getViewModel().set("currentView", "jobs-panel");
+                }
+              });
             },
             failure: function (response) {
               var errorMsg = "Failed to start Data Fix job";

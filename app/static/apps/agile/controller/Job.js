@@ -40,7 +40,12 @@ Ext.define("AgileAcpt.controller.Job", {
     var jobType = record.get("type");
 
     // For ACP export/import/file-copy/data-fix jobs, try to get the ACP log file first
-    if (jobType === "acp-export" || jobType === "acp-import" || jobType === "file-copy" || jobType === "data-fix") {
+    if (
+      jobType === "acp-export" ||
+      jobType === "acp-import" ||
+      jobType === "file-copy" ||
+      jobType === "data-fix"
+    ) {
       Ext.Ajax.request({
         url: "/api/jobs/" + jobId + "/acp-log",
         method: "GET",
