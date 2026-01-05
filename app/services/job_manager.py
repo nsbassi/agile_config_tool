@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import Callable, Dict, Optional, List, Tuple
 
 from config import Config
+from app.models.job import JobModel
 
 
 @dataclass
@@ -45,11 +46,48 @@ class JobManager:
         self.jobs: Dict[str, Job] = {}
         self._lock = threading.Lock()
         os.makedirs(Config.WORK_DIR, exist_ok=True)
+        
+        # Initialize database
+        JobModel.init_db()
+        
+        # Load existing jobs from database
+        self._load_jobs_from_db()
+
+    def _load_jobs_from_db(self):
+        """Load jobs from database into memory"""
+        try:
+            job_dicts = JobModel.list_jobs(limit=1000)
+            for job_dict in job_dicts:
+                job = Job(
+                    id=job_dict['id'],
+                    type=job_dict['type'],
+                    status=job_dict['status'],
+                    created_at=datetime.fromisoformat(job_dict['created_at']),
+                    finished_at=datetime.fromisoformat(job_dict['finished_at']) if job_dict['finished_at'] else None,
+                    summary=job_dict['summary'],
+                    log=job_dict['log'],
+                    output_files=job_dict['output_files'],
+                    exit_code=job_dict['exit_code'],
+                    severity=job_dict['severity'],
+                    analysis=job_dict['analysis']
+                )
+                self.jobs[job.id] = job
+        except Exception as e:
+            print(f"Error loading jobs from database: {e}")
 
     def create_job(self, job_type: str) -> str:
         job_id = str(uuid.uuid4())
+        job = Job(id=job_id, type=job_type)
         with self._lock:
-            self.jobs[job_id] = Job(id=job_id, type=job_type)
+            self.jobs[job_id] = job
+        
+        # Persist to database
+        JobModel.save_job(
+            job_id=job.id,
+            job_type=job.type,
+            status=job.status,
+            created_at=job.created_at
+        )
         return job_id
 
     def get_job(self, job_id: str) -> Optional[Job]:
@@ -68,6 +106,9 @@ class JobManager:
             job = self.jobs.get(job_id)
             if job:
                 job.log += text
+        
+        # Persist to database
+        JobModel.append_log(job_id, text)
 
     def set_output_files(self, job_id: str, files: Dict[str, str]) -> None:
         with self._lock:
@@ -89,6 +130,9 @@ class JobManager:
                 return False
             del self.jobs[job_id]
 
+        # Delete from database
+        JobModel.delete_job(job_id)
+
         # Clean up work directory
         work_dir = os.path.join(Config.WORK_DIR, job_id)
         if os.path.exists(work_dir):
@@ -104,6 +148,7 @@ class JobManager:
         def runner():
             job = self.jobs[job_id]
             job.status = 'running'
+            JobModel.update_status(job_id, 'running')
             self.append_log(job_id, f'Job {job_id} started\n')
             try:
                 result = target()
@@ -136,6 +181,21 @@ class JobManager:
                 job.finished_at = datetime.utcnow()
                 self.append_log(
                     job_id, f'Job {job_id} finished with status {job.status}\n')
+                
+                # Persist final state to database
+                JobModel.save_job(
+                    job_id=job.id,
+                    job_type=job.type,
+                    status=job.status,
+                    created_at=job.created_at,
+                    finished_at=job.finished_at,
+                    summary=job.summary,
+                    log=job.log,
+                    output_files=job.output_files,
+                    exit_code=job.exit_code,
+                    severity=job.severity,
+                    analysis=job.analysis
+                )
 
         thread = threading.Thread(target=runner, daemon=True)
         thread.start()
