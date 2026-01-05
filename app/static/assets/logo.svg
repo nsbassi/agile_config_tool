@@ -1,0 +1,73 @@
+<svg width="280" height="60" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Left Config/Server Icon -->
+    <g transform="translate(18, 30)">
+        <rect x="-8" y="-12" width="16" height="24" rx="2" fill="url(#gradient)" opacity="0.85" />
+        <circle cx="0" cy="-6" r="1.5" fill="white" />
+        <circle cx="0" cy="0" r="1.5" fill="white" />
+        <circle cx="0" cy="6" r="1.5" fill="white" />
+        <!-- Config dots -->
+        <circle cx="-4" cy="-3" r="1" fill="white" opacity="0.6" />
+        <circle cx="4" cy="-3" r="1" fill="white" opacity="0.6" />
+        <circle cx="-4" cy="3" r="1" fill="white" opacity="0.6" />
+        <circle cx="4" cy="3" r="1" fill="white" opacity="0.6" />
+    </g>
+
+    <!-- Straight Sync Arrows -->
+    <g transform="translate(35, 30)">
+        <!-- Right arrow (top) -->
+        <path d="M -7,-6 L 9,-6"
+            stroke="url(#accentGradient)"
+            stroke-width="4"
+            stroke-linecap="round" />
+        <polygon points="9,-6 5,-9.5 5,-2.5" fill="#10b981" />
+
+        <!-- Left arrow (bottom) -->
+        <path d="M 9,6 L -7,6"
+            stroke="url(#gradient)"
+            stroke-width="4"
+            stroke-linecap="round" />
+        <polygon points="-7,6 -3,9.5 -3,2.5" fill="#2563eb" />
+    </g>
+
+    <!-- Right Config/Server Icon -->
+    <g transform="translate(52, 30)">
+        <rect x="-8" y="-12" width="16" height="24" rx="2" fill="url(#gradient)" opacity="0.85" />
+        <circle cx="0" cy="-6" r="1.5" fill="white" />
+        <circle cx="0" cy="0" r="1.5" fill="white" />
+        <circle cx="0" cy="6" r="1.5" fill="white" />
+        <!-- Config dots -->
+        <circle cx="-4" cy="-3" r="1" fill="white" opacity="0.6" />
+        <circle cx="4" cy="-3" r="1" fill="white" opacity="0.6" />
+        <circle cx="-4" cy="3" r="1" fill="white" opacity="0.6" />
+        <circle cx="4" cy="3" r="1" fill="white" opacity="0.6" />
+    </g>
+
+    <!-- Text: "Agile" -->
+    <text x="85" y="35" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700"
+        fill="#1e293b">
+        Agile
+    </text>
+
+    <!-- Text: "PLM" -->
+    <text x="143" y="35" font-family="'Segoe UI', Arial, sans-serif" font-size="22"
+        font-weight="600" fill="url(#gradient)">
+        PLM
+    </text>
+
+    <!-- Subtitle: "Configuration Management" -->
+    <text x="85" y="50" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#64748b"
+        letter-spacing="1.5" font-weight="500">
+        Configuration Management
+    </text>
+</svg>

@@ -1,0 +1,48 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background circle -->
+    <circle cx="32" cy="32" r="30" fill="url(#gradient)" />
+
+    <!-- Left Config Icon -->
+    <g transform="translate(21, 32)">
+        <rect x="-5" y="-8" width="10" height="16" rx="1.5" fill="white" opacity="0.95" />
+        <circle cx="0" cy="-4" r="1" fill="url(#gradient)" />
+        <circle cx="0" cy="0" r="1" fill="url(#gradient)" />
+        <circle cx="0" cy="4" r="1" fill="url(#gradient)" />
+    </g>
+
+    <!-- Straight Sync Arrows -->
+    <g transform="translate(32, 32)">
+        <!-- Right arrow (top) -->
+        <path d="M -7,-5 L 7,-5"
+            stroke="white"
+            stroke-width="3.5"
+            stroke-linecap="round" />
+        <polygon points="7,-5 4,-8 4,-2" fill="white" />
+
+        <!-- Left arrow (bottom) -->
+        <path d="M 7,5 L -7,5"
+            stroke="white"
+            stroke-width="3.5"
+            stroke-linecap="round" />
+        <polygon points="-7,5 -4,8 -4,2" fill="white" />
+    </g>
+
+    <!-- Right Config Icon -->
+    <g transform="translate(43, 32)">
+        <rect x="-5" y="-8" width="10" height="16" rx="1.5" fill="white" opacity="0.95" />
+        <circle cx="0" cy="-4" r="1" fill="url(#gradient)" />
+        <circle cx="0" cy="0" r="1" fill="url(#gradient)" />
+        <circle cx="0" cy="4" r="1" fill="url(#gradient)" />
+    </g>
+</svg>

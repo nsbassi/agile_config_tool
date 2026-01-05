@@ -1,0 +1,366 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Panel styling to match plm-adapter */
+.x-panel-header {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  padding: 10px 15px !important;
+}
+
+.x-panel-header-title {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+/* Panel collapse/expand tool styling */
+.x-tool {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.x-tool-img,
+.x-tool-tool-el {
+  opacity: 1 !important;
+  filter: invert(46%) sepia(8%) saturate(818%) hue-rotate(180deg) brightness(93%) contrast(89%) !important;
+}
+
+.x-tool:hover .x-tool-img,
+.x-tool:hover .x-tool-tool-el {
+  filter: invert(39%) sepia(57%) saturate(1731%) hue-rotate(226deg) brightness(95%) contrast(88%) !important;
+}
+
+.x-panel-body {
+  background: #ffffff !important;
+}
+
+.x-tool-expand-bottom,
+.x-tool-collapse-top {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  background: none !important;
+}
+
+/* Grid styling */
+.x-grid-header {
+  background: #f8fafc !important;
+}
+
+.x-grid {
+  min-height: 200px !important;
+}
+
+.x-column-header {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  text-transform: uppercase !important;
+}
+
+.x-grid-cell {
+  border-color: #e2e8f0 !important;
+}
+
+.x-grid-row:hover {
+  background: #f8fafc !important;
+}
+
+/* Button styling */
+.x-btn-default-small {
+  background: #667eea !important;
+  border-color: #667eea !important;
+  color: #ffffff !important;
+}
+
+.x-btn-default-small:hover {
+  background: #5568d3 !important;
+  border-color: #5568d3 !important;
+}
+
+.x-btn-default-toolbar-small {
+  border-radius: 3px !important;
+}
+
+/* Navigation panel buttons */
+.x-btn-default-toolbar {
+  background: transparent !important;
+  border: none !important;
+  color: #64748b !important;
+}
+
+.x-btn-default-toolbar:hover {
+  background: #f1f5f9 !important;
+  color: #667eea !important;
+}
+
+.x-btn-default-toolbar.x-btn-pressed {
+  background: #f1f5f9 !important;
+  color: #667eea !important;
+}
+
+/* Font Awesome icon styling */
+.x-btn-icon-el {
+  font-size: 16px !important;
+}
+
+.x-btn-default-toolbar .x-btn-icon-el {
+  color: #64748b !important;
+}
+
+.x-btn-default-toolbar:hover .x-btn-icon-el {
+  color: #667eea !important;
+}
+
+/* Logout button styling */
+.logout-button {
+  background: #667eea !important;
+  border-color: #667eea !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+}
+
+.logout-button:hover {
+  background: #5568d3 !important;
+  border-color: #5568d3 !important;
+}
+
+/* Form field styling */
+.x-form-text,
+.x-form-field {
+  border-color: #e2e8f0 !important;
+}
+
+.x-form-text:focus,
+.x-form-field:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+.x-form-item-label {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+
+/* Trigger icon styling */
+.x-form-trigger {
+  width: 24px !important;
+}
+
+.x-form-trigger .x-form-trigger-el {
+  width: 24px !important;
+}
+
+/* Fieldset styling */
+.x-fieldset {
+  border-color: #e2e8f0 !important;
+  background: #ffffff !important;
+}
+
+.x-fieldset-header-text {
+  color: #475569 !important;
+  font-weight: 600 !important;
+}
+
+/* Combo box styling */
+.x-boundlist-item {
+  border-color: #e2e8f0 !important;
+  padding: 8px 12px !important;
+  color: #1e293b !important;
+}
+
+.x-boundlist-selected {
+  background: #e0e7ff !important;
+  color: #4338ca !important;
+}
+
+.x-boundlist-item:hover {
+  background: #eef2ff !important;
+  color: #1e293b !important;
+}
+
+/* Combo box trigger arrow styling */
+.x-form-trigger {
+  background-color: transparent !important;
+  border-color: #e2e8f0 !important;
+  width: 24px !important;
+}
+
+.x-form-arrow-trigger {
+  background-image: none !important;
+}
+
+.x-form-arrow-trigger:after {
+  content: "\f078" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  color: #64748b !important;
+  font-size: 12px !important;
+  line-height: 24px !important;
+  display: inline-block !important;
+  padding-right: 8px !important;
+}
+
+.x-form-trigger-wrap-focus .x-form-arrow-trigger:after {
+  color: #667eea !important;
+}
+
+/* Splitter styling */
+.x-splitter {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  position: relative !important;
+}
+
+.x-splitter-horizontal,
+.x-splitter-vertical {
+  background-image: none !important;
+}
+
+/* Splitter collapse icon */
+.x-splitter .x-collapse-el {
+  background-image: none !important;
+  opacity: 1 !important;
+}
+
+.x-splitter .x-collapse-el:before {
+  content: "\f053" !important;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.x-splitter-collapsed .x-collapse-el:before {
+  content: "\f054" !important;
+}
+
+.x-splitter:hover .x-collapse-el:before {
+  color: #667eea !important;
+}
+
+/* Toolbar styling */
+.x-toolbar {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Window styling */
+.x-window-header {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+.x-window-body {
+  background: #ffffff !important;
+}
+
+/* Tab panel styling */
+.x-tab-bar {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+.x-tab {
+  background: transparent !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+.x-tab:hover {
+  background: #f1f5f9 !important;
+  color: #667eea !important;
+}
+
+.x-tab-active {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #667eea !important;
+  border-bottom-color: transparent !important;
+}
+
+/* Action column icons */
+.x-action-col-icon {
+  margin-right: 5px !important;
+  color: #667eea !important;
+}
+
+.x-action-col-icon:hover {
+  color: #5568d3 !important;
+}
+
+/* Tooltip styling */
+.x-tip {
+  background: #1e293b !important;
+  border-color: #1e293b !important;
+  color: #ffffff !important;
+}
+
+.x-tip-header {
+  background: #1e293b !important;
+  border-color: #1e293b !important;
+}
+
+.x-tip-body {
+  color: #ffffff !important;
+}
+
+.logout-button .x-btn-icon-el-default-toolbar-small,
+.logout-button .x-btn-inner-default-toolbar-small {
+  color: #ffffff !important;
+  border-radius: 0 !important;
+}
+
+/* Large scale button styling (Execute buttons) */
+.x-btn-default-large {
+  background: #667eea !important;
+  border-color: #667eea !important;
+  color: #ffffff !important;
+  padding: 10px 20px !important;
+  border-radius: 0 !important;
+}
+
+.x-btn-default-large:hover {
+  background: #5568d3 !important;
+  border-color: #5568d3 !important;
+}
+
+.x-btn-default-large .x-btn-inner {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.x-btn-default-large .x-btn-icon-el {
+  color: #ffffff !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  margin-right: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.x-btn-default-large .x-btn-wrap-default-large {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.x-btn-default-large .x-btn-button-default-large {
+  display: flex !important;
+  align-items: center !important;
+}
