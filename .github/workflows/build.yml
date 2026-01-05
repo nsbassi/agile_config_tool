@@ -42,6 +42,10 @@ jobs:
           name: agile_acp_tool
           path: dist/agile_acp_tool
 
+      - name: Configure git safe directory
+        run: |
+          git config --global --add safe.directory /__w/agile_config_tool/agile_config_tool
+
       - name: Commit built binary
         uses: EndBug/add-and-commit@v9
         with:
