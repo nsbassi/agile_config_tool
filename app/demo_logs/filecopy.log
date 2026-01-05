@@ -23,7 +23,7 @@ Run Start Date: Jan 5, 2026 10:15:30 AM
 	Target Port:            7001
 	Target URL:             http://ncorp-amsval-03.ranbaxy.com:7001/Agile
 	Authentication:         Successful
-	User:                   filecopy_admin
+	User:                   admin
 	Connection Time:        0.842s
 
 ==================================================================

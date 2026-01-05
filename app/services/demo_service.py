@@ -271,5 +271,73 @@ class DemoService:
             'summary': f'File copy completed successfully to {target_env}'
         }
 
+    @staticmethod
+    def simulate_data_fix(target_env: str, input_file: str, work_dir: str = None, duration: int = None) -> Dict:
+        """Simulate Data Fix operation"""
+        duration = duration or (38 * 60)  # 38 minutes
+
+        # Capture start time
+        start_time = datetime.datetime.now()
+        start_date_str = start_time.strftime("%b %d, %Y %I:%M:%S %p")
+
+        # Read the actual datafix.log sample
+        log = DemoService._read_sample_log('datafix.log')
+
+        # Simulate processing time
+        time.sleep(duration)
+
+        # Capture end time
+        end_time = datetime.datetime.now()
+        end_date_str = end_time.strftime("%b %d, %Y %I:%M:%S %p")
+        duration_delta = end_time - start_time
+        hours, remainder = divmod(int(duration_delta.total_seconds()), 3600)
+        minutes, seconds = divmod(remainder, 60)
+        duration_str = f"{hours}:{minutes}:{seconds}.{duration_delta.microseconds // 1000}"
+
+        # Replace timestamps in log
+        log = log.replace('Jan 5, 2026 10:45:00 AM',
+                          start_date_str)  # Placeholder start time
+        # Placeholder end time (38 min later)
+        log = log.replace('Jan 5, 2026 11:23:00 AM', end_date_str)
+        log = log.replace('0:38:0:0', duration_str)  # Placeholder duration
+
+        # Replace target environment
+        log = log.replace(
+            'Target Environment: [DEV]', f'Target Environment: [{target_env}]')
+        log = log.replace(
+            'Input File: [datafix_template.xlsx]', f'Input File: [{input_file}]')
+
+        # Add demo mode header
+        demo_header = f"[DEMO MODE] Starting Data Fix\n"
+        demo_header += f"Target Environment: {target_env}\n"
+        demo_header += f"Input File: {input_file}\n"
+        demo_header += f"Simulating data fix process for {duration/60:.0f} minutes...\n\n"
+        demo_header += "=" * 70 + "\n\n"
+
+        full_log = demo_header + log
+
+        # Write datafix.log to work directory if provided
+        if work_dir:
+            log_path = os.path.join(work_dir, 'datafix.log')
+            try:
+                with open(log_path, 'w', encoding='utf-8') as f:
+                    f.write(log)
+            except Exception:
+                pass
+
+        return {
+            'log': full_log,
+            'output_files': {},
+            'exit_code': 0,
+            'severity': 'SUCCESS',
+            'analysis': {
+                'success': True,
+                'records_processed': random.randint(100, 500),
+                'records_updated': random.randint(50, 400),
+                'errors': 0
+            },
+            'summary': f'Data Fix completed successfully for {input_file}'
+        }
+
 
 demo_service = DemoService()

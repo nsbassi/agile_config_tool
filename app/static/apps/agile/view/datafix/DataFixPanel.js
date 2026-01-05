@@ -93,6 +93,20 @@ Ext.define("AgileAcpt.view.datafix.DataFixPanel", {
       regex: /\.(sql|txt)$/i,
       regexText: "Only SQL or TXT files are allowed",
     },
+    {
+      xtype: "filefield",
+      fieldLabel: "Input File (Excel)",
+      name: "inputFile",
+      allowBlank: false,
+      buttonText: "Select File...",
+      listeners: {
+        change: function (filefield, value, oldvalue) {
+          // Store the file object for later use
+          var file = filefield.fileInputEl.dom.files[0];
+          filefield.up("form").file = file;
+        },
+      },
+    },
   ],
   buttons: [
     {
@@ -104,8 +118,57 @@ Ext.define("AgileAcpt.view.datafix.DataFixPanel", {
         var form = btn.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          Ext.Msg.alert("Info", "Executing DataFix job for environment: " + values.targetEnv);
-          // TODO: Implement actual API call to trigger DataFix job
+          
+          // Get the input file field and extract the actual filename
+          var inputFileField = form.findField('inputFile');
+          var inputFile = null;
+          
+          if (inputFileField && inputFileField.fileInputEl && inputFileField.fileInputEl.dom.files.length > 0) {
+            inputFile = inputFileField.fileInputEl.dom.files[0].name;
+          }
+          
+          // If still no inputFile, show error
+          if (!inputFile) {
+            Ext.Msg.alert("Error", "Please select an input file");
+            return;
+          }
+          
+          Ext.Ajax.request({
+            url: "/api/jobs/datafix/run",
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+            jsonData: {
+              targetEnv: values.targetEnv,
+              inputFile: inputFile,
+              mode: "local",
+            },
+            success: function (response) {
+              var data = Ext.decode(response.responseText);
+              Ext.Msg.alert(
+                "Success",
+                "Data Fix job started with ID: " + data.jobId
+              );
+              
+              // Switch to Jobs panel
+              var mainView = Ext.ComponentQuery.query("mainview")[0];
+              if (mainView && mainView.getViewModel()) {
+                mainView.getViewModel().set("currentView", "jobs-panel");
+              }
+            },
+            failure: function (response) {
+              var errorMsg = "Failed to start Data Fix job";
+              if (response.responseText) {
+                try {
+                  var data = Ext.decode(response.responseText);
+                  errorMsg = data.message || errorMsg;
+                } catch (e) {}
+              }
+              Ext.Msg.alert("Error", errorMsg);
+            },
+          });
         }
       },
     },

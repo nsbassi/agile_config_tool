@@ -104,6 +104,8 @@ def get_acp_log(job_id):
         log_filename = 'import.log'
     elif job.type == 'file-copy':
         log_filename = 'filecopy.log'
+    elif job.type == 'data-fix':
+        log_filename = 'datafix.log'
 
     if not log_filename:
         raise NotFound('No ACP log file available for this job type')
@@ -362,6 +364,35 @@ def run_filecopy():
             return demo_service.simulate_file_copy(target_env=target_env, work_dir=work_dir)
         # TODO: Implement real file copy service
         raise NotImplementedError('File copy service not yet implemented')
+
+    job_manager.start_job(job_id, _run)
+    return jsonify({'jobId': job_id})
+
+
+@bp.route('/datafix/run', methods=['POST'])
+def run_datafix():
+    body = _require_json()
+    target_env = body.get('targetEnv')
+    input_file = body.get('inputFile')
+    config_file = body.get('configFile')
+    host = body.get('host')
+    mode = body.get('mode', 'local')
+    ssh = body.get('ssh', {})
+
+    if not target_env:
+        raise BadRequest('targetEnv is required')
+    if not input_file:
+        raise BadRequest('inputFile is required')
+
+    # Create a unique job ID
+    job_id = job_manager.create_job(job_type='data-fix')
+    work_dir = job_manager.get_job_work_dir(job_id)
+
+    def _run():
+        if Config.DEMO_MODE:
+            return demo_service.simulate_data_fix(target_env=target_env, input_file=input_file, work_dir=work_dir)
+        # TODO: Implement real data fix service
+        raise NotImplementedError('Data fix service not yet implemented')
 
     job_manager.start_job(job_id, _run)
     return jsonify({'jobId': job_id})
