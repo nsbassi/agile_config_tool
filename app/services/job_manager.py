@@ -82,6 +82,24 @@ class JobManager:
         data = job.log[offset:]
         return data, offset + len(data)
 
+    def delete_job(self, job_id: str) -> bool:
+        """Delete a job and its work directory"""
+        with self._lock:
+            if job_id not in self.jobs:
+                return False
+            del self.jobs[job_id]
+
+        # Clean up work directory
+        work_dir = os.path.join(Config.WORK_DIR, job_id)
+        if os.path.exists(work_dir):
+            import shutil
+            try:
+                shutil.rmtree(work_dir)
+            except Exception:
+                pass  # Ignore cleanup errors
+
+        return True
+
     def start_job(self, job_id: str, target: Callable[[], Dict[str, str]]) -> None:
         def runner():
             job = self.jobs[job_id]

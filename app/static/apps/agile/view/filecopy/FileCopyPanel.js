@@ -72,8 +72,64 @@ Ext.define("AgileAcpt.view.filecopy.FileCopyPanel", {
         var form = btn.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          Ext.Msg.alert("Info", "Executing FileCopy job for environment: " + values.targetEnv);
-          // TODO: Implement actual API call to trigger FileCopy job
+          var configFile = form.findField("configFile").getEl().down("input[type=file]").dom
+            .files[0];
+
+          // Show loading message
+          Ext.Msg.wait("Starting File Copy job...", "Please wait");
+
+          // Prepare request data
+          var requestData = {
+            targetEnv: values.targetEnv,
+            mode: "local",
+          };
+
+          // Create job directly (in demo mode, config file is optional)
+          Ext.Ajax.request({
+            url: "/api/jobs/filecopy/run",
+            method: "POST",
+            headers: {
+              Authorization: "Bearer" + localStorage.getItem("jwt"),
+              "Content-Type": "application/json",
+            },
+            jsonData: requestData,
+            success: function (response) {
+              Ext.Msg.close();
+              var data = Ext.decode(response.responseText);
+              Ext.Msg.alert(
+                "Success",
+                "File Copy job created successfully! Job ID: " + data.jobId,
+                function () {
+                  // Navigate to jobs panel
+                  var viewport = Ext.ComponentQuery.query("mainview")[0];
+                  if (viewport) {
+                    var controller = viewport.getController();
+                    if (controller) {
+                      controller.navigateToPanel("jobsPanel");
+
+                      // Refresh jobs grid
+                      var jobsGrid = controller.lookupReference("jobGrid");
+                      if (jobsGrid) {
+                        jobsGrid.getStore().reload();
+                      }
+                    }
+                  }
+                }
+              );
+
+              // Reset form
+              form.reset();
+            },
+            failure: function (response) {
+              Ext.Msg.close();
+              var error = "Failed to create File Copy job";
+              try {
+                var data = Ext.decode(response.responseText);
+                error = data.error || error;
+              } catch (e) {}
+              Ext.Msg.alert("Error", error);
+            },
+          });
         }
       },
     },

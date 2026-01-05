@@ -54,7 +54,7 @@ Ext.define("AgileAcpt.view.jobs.JobsPanel", {
         {
           xtype: "actioncolumn",
           text: "Actions",
-          width: 80,
+          width: 110,
           items: [
             {
               iconCls: "fas fa-file-alt",
@@ -68,6 +68,11 @@ Ext.define("AgileAcpt.view.jobs.JobsPanel", {
               isDisabled: function (view, rowIndex, colIndex, item, record) {
                 return record.get("status") !== "success";
               },
+            },
+            {
+              iconCls: "fas fa-trash",
+              tooltip: "Delete Job",
+              handler: "onDeleteJobAction",
             },
           ],
         },

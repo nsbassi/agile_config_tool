@@ -69,6 +69,14 @@ def get_job(job_id):
     return jsonify(job.to_dict())
 
 
+@bp.route('/<job_id>', methods=['DELETE'])
+def delete_job(job_id):
+    """Delete a job"""
+    if not job_manager.delete_job(job_id):
+        raise NotFound('Job not found')
+    return jsonify({'success': True, 'message': 'Job deleted successfully'})
+
+
 @bp.route('/<job_id>/log', methods=['GET'])
 def get_job_log(job_id):
     job = job_manager.get_job(job_id)
@@ -77,6 +85,40 @@ def get_job_log(job_id):
     offset = request.args.get('offset', default=0, type=int)
     chunk, new_offset = job_manager.get_job_log_chunk(job_id, offset)
     return jsonify({'chunk': chunk, 'offset': new_offset, 'finished': job.finished})
+
+
+@bp.route('/<job_id>/acp-log', methods=['GET'])
+def get_acp_log(job_id):
+    """Get ACP log file (export.log, import.log, or filecopy.log) for jobs"""
+    job = job_manager.get_job(job_id)
+    if not job:
+        raise NotFound('Job not found')
+
+    work_dir = job_manager.get_job_work_dir(job_id)
+
+    # Determine which log file to look for based on job type
+    log_filename = None
+    if job.type == 'acp-export':
+        log_filename = 'export.log'
+    elif job.type == 'acp-import':
+        log_filename = 'import.log'
+    elif job.type == 'file-copy':
+        log_filename = 'filecopy.log'
+
+    if not log_filename:
+        raise NotFound('No ACP log file available for this job type')
+
+    log_path = os.path.join(work_dir, log_filename)
+
+    if not os.path.exists(log_path):
+        raise NotFound(f'ACP log file not found: {log_filename}')
+
+    try:
+        with open(log_path, 'r', encoding='utf-8', errors='ignore') as f:
+            log_content = f.read()
+        return jsonify({'log': log_content, 'filename': log_filename})
+    except Exception as e:
+        raise BadRequest(f'Error reading log file: {str(e)}')
 
 
 @bp.route('/<job_id>/analysis', methods=['GET'])
@@ -164,7 +206,8 @@ def acp_export():
         if Config.DEMO_MODE:
             return demo_service.simulate_acp_export(
                 host=host,
-                product_line=product_line
+                product_line=product_line,
+                work_dir=work_dir
             )
         return acp_service.run_acp_export(
             host=host,
@@ -187,8 +230,14 @@ def acp_import():
     host = body.get('host')
     mode = body.get('mode', 'local')
     ssh = body.get('ssh', {})
-    if not xml_config or not export_bundle or not host:
-        raise BadRequest('xmlConfig, exportBundle and host are required')
+
+    # In demo mode, xmlConfig and exportBundle are optional (simulated)
+    if not Config.DEMO_MODE:
+        if not xml_config or not export_bundle or not host:
+            raise BadRequest('xmlConfig, exportBundle and host are required')
+    else:
+        if not host:
+            raise BadRequest('host is required')
     remote = (mode == 'ssh')
     ssh_cfg = None
     if remote:
@@ -209,7 +258,7 @@ def acp_import():
 
     def _run():
         if Config.DEMO_MODE:
-            return demo_service.simulate_acp_import(host=host)
+            return demo_service.simulate_acp_import(host=host, work_dir=work_dir)
         return acp_service.run_acp_import(
             host=host,
             xml_config_path=xml_config,
@@ -267,6 +316,52 @@ def run_averify():
             remote=remote,
             ssh_config=ssh_cfg,
         )
+
+    job_manager.start_job(job_id, _run)
+    return jsonify({'jobId': job_id})
+
+
+@bp.route('/filecopy/run', methods=['POST'])
+def run_filecopy():
+    body = _require_json()
+    target_env = body.get('targetEnv')
+    config_file = body.get('configFile')
+    host = body.get('host')
+    mode = body.get('mode', 'local')
+    ssh = body.get('ssh', {})
+
+    if not target_env:
+        raise BadRequest('targetEnv is required')
+
+    # In demo mode, config file and host are optional
+    if not Config.DEMO_MODE:
+        if not config_file or not host:
+            raise BadRequest('configFile and host are required')
+
+    remote = (mode == 'ssh')
+    ssh_cfg = None
+    if remote:
+        ssh_host = ssh.get('host') or host
+        ssh_user = ssh.get('username')
+        ssh_port = ssh.get('port', 22)
+        if not ssh_user:
+            raise BadRequest('ssh.username required for SSH mode')
+        ssh_cfg = {
+            'hostname': ssh_host,
+            'username': ssh_user,
+            'port': ssh_port,
+            'password': ssh.get('password'),
+            'key_filename': ssh.get('keyFilename'),
+        }
+
+    job_id = job_manager.create_job(job_type='file-copy')
+    work_dir = job_manager.get_job_work_dir(job_id)
+
+    def _run():
+        if Config.DEMO_MODE:
+            return demo_service.simulate_file_copy(target_env=target_env, work_dir=work_dir)
+        # TODO: Implement real file copy service
+        raise NotImplementedError('File copy service not yet implemented')
 
     job_manager.start_job(job_id, _run)
     return jsonify({'jobId': job_id})

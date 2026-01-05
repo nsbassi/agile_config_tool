@@ -34,10 +34,6 @@ Ext.define("AgileAcpt.view.main.Main", {
         },
         {
           xtype: "component",
-          html: '<div style="margin-left: 20px; padding: 5px 15px; background: #f59e0b; color: white; border-radius: 4px; font-weight: bold; font-size: 14px;"><i class="fas fa-info-circle"></i> DEMO MODE</div>',
-        },
-        {
-          xtype: "component",
           flex: 1,
         },
         {

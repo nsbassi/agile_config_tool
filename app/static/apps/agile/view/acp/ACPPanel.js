@@ -125,11 +125,15 @@ Ext.define("AgileAcpt.view.acp.ACPPanel", {
         var form = btn.up("form").getForm();
         if (form.isValid()) {
           var values = form.getValues();
-          var configFile = form.findField("configFile").fileInputEl.dom.files[0];
+          var configFile = null;
 
-          if (!configFile) {
-            Ext.Msg.alert("Error", "Please select a configuration file");
-            return;
+          // Config file is only needed for export
+          if (values.operation === "export") {
+            configFile = form.findField("configFile").fileInputEl.dom.files[0];
+            if (!configFile) {
+              Ext.Msg.alert("Error", "Please select a configuration file");
+              return;
+            }
           }
 
           // Get environment details from store
@@ -157,96 +161,109 @@ Ext.define("AgileAcpt.view.acp.ACPPanel", {
             }
           }
 
-          Ext.Msg.wait("Uploading configuration file...", "Please wait");
+          // For export, upload the config file first
+          if (values.operation === "export" && configFile) {
+            Ext.Msg.wait("Uploading configuration file...", "Please wait");
 
-          // First, upload the configuration file
-          var formData = new FormData();
-          formData.append("file", configFile);
+            // First, upload the configuration file
+            var formData = new FormData();
+            formData.append("file", configFile);
 
-          fetch("/api/jobs/upload", {
-            method: "POST",
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("jwt"),
-            },
-            body: formData,
-          })
-            .then(function (response) {
-              if (!response.ok) {
-                throw new Error("Failed to upload file");
-              }
-              return response.json();
+            fetch("/api/jobs/upload", {
+              method: "POST",
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("jwt"),
+              },
+              body: formData,
             })
-            .then(function (uploadData) {
-              // Now create the job with the uploaded file path
-              var endpoint = "";
-              var requestData = {
-                xmlConfig: uploadData.path,
-                host: host,
-                mode: "local",
-                sourceEnv: values.sourceEnv,
-              };
-
-              if (values.operation === "export") {
-                endpoint = "/api/jobs/acp/export";
-                requestData.productLine = productLine;
-              } else if (values.operation === "import") {
-                endpoint = "/api/jobs/acp/import";
-                // For import, we need the export bundle
-                // This is a limitation - need to implement bundle upload/selection
+              .then(function (response) {
+                if (!response.ok) {
+                  throw new Error("Failed to upload file");
+                }
+                return response.json();
+              })
+              .then(function (uploadData) {
+                // Now create the job with the uploaded file path
+                return createJob(uploadData.path);
+              })
+              .then(handleJobCreationSuccess)
+              .catch(function (error) {
                 Ext.Msg.close();
-                Ext.Msg.alert(
-                  "Not Implemented",
-                  "Import operation requires an export bundle to be specified. This feature needs to be enhanced to allow bundle selection."
-                );
-                return;
-              } else if (values.operation === "deepcompare") {
-                // Deep compare is not yet implemented on the backend
-                Ext.Msg.close();
-                Ext.Msg.alert(
-                  "Not Implemented",
-                  "Deep compare operation is not yet implemented in the backend."
-                );
-                return;
-              }
-
-              Ext.Msg.wait("Creating " + values.operation + " job...", "Please wait");
-
-              return Ext.Ajax.request({
-                url: endpoint,
-                method: "POST",
-                headers: {
-                  Authorization: "Bearer " + localStorage.getItem("jwt"),
-                  "Content-Type": "application/json",
-                },
-                jsonData: requestData,
+                Ext.Msg.alert("Error", error.message || "Failed to create job");
               });
-            })
-            .then(function (response) {
+          } else {
+            // For import/deepcompare, no file upload needed
+            Ext.Msg.wait("Creating " + values.operation + " job...", "Please wait");
+            createJob(null)
+              .then(handleJobCreationSuccess)
+              .catch(function (error) {
+                Ext.Msg.close();
+                Ext.Msg.alert("Error", error.message || "Failed to create job");
+              });
+          }
+
+          function createJob(xmlConfigPath) {
+            var endpoint = "";
+            var requestData = {
+              host: host,
+              mode: "local",
+              sourceEnv: values.sourceEnv,
+            };
+
+            if (xmlConfigPath) {
+              requestData.xmlConfig = xmlConfigPath;
+            }
+
+            if (values.operation === "export") {
+              endpoint = "/api/jobs/acp/export";
+              requestData.productLine = productLine;
+            } else if (values.operation === "import") {
+              endpoint = "/api/jobs/acp/import";
+              // For import in demo mode, no bundle needed
+              // In production, would need export bundle
+            } else if (values.operation === "deepcompare") {
+              // Deep compare is not yet implemented on the backend
               Ext.Msg.close();
-              var data = Ext.decode(response.responseText);
               Ext.Msg.alert(
-                "Success",
-                values.operation.charAt(0).toUpperCase() +
-                  values.operation.slice(1) +
-                  " job created successfully. Job ID: " +
-                  data.jobId,
-                function () {
-                  // Switch to jobs panel to view the job
-                  var viewport = Ext.ComponentQuery.query("mainview")[0];
-                  if (viewport) {
-                    var controller = viewport.getController();
-                    if (controller) {
-                      controller.navigateToPanel("jobsPanel");
-                    }
+                "Not Implemented",
+                "Deep compare operation is not yet implemented in the backend."
+              );
+              return Promise.reject(new Error("Not implemented"));
+            }
+
+            return Ext.Ajax.request({
+              url: endpoint,
+              method: "POST",
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("jwt"),
+                "Content-Type": "application/json",
+              },
+              jsonData: requestData,
+            });
+          }
+
+          function handleJobCreationSuccess(response) {
+            Ext.Msg.close();
+            var data = Ext.decode(response.responseText);
+            Ext.Msg.alert(
+              "Success",
+              values.operation.charAt(0).toUpperCase() +
+                values.operation.slice(1) +
+                " job created successfully. Job ID: " +
+                data.jobId,
+              function () {
+                // Switch to jobs panel to view the job
+                var viewport = Ext.ComponentQuery.query("mainview")[0];
+                if (viewport) {
+                  var controller = viewport.getController();
+                  if (controller) {
+                    controller.navigateToPanel("jobsPanel");
                   }
                 }
-              );
-              form.reset();
-            })
-            .catch(function (error) {
-              Ext.Msg.close();
-              Ext.Msg.alert("Error", error.message || "Failed to create job");
-            });
+              }
+            );
+            form.reset();
+          }
         }
       },
     },
