@@ -8,8 +8,10 @@ from werkzeug.utils import secure_filename
 from app.services.job_manager import JobManager
 from app.services.acp_service import AcpService
 from app.services.averify_service import AverifyService
+from app.services.demo_service import demo_service
 from app.utils.validators import sanitize_filename
 from app.models.environment import Environment
+from config import Config
 
 bp = Blueprint('jobs', __name__, url_prefix='/api/jobs')
 
@@ -159,6 +161,11 @@ def acp_export():
             work_dir = acp_project_dir
 
     def _run():
+        if Config.DEMO_MODE:
+            return demo_service.simulate_acp_export(
+                host=host,
+                product_line=product_line
+            )
         return acp_service.run_acp_export(
             host=host,
             xml_config_path=xml_config,
@@ -169,7 +176,6 @@ def acp_export():
         )
 
     job_manager.start_job(job_id, _run)
-    return jsonify({'jobId': job_id})
     return jsonify({'jobId': job_id})
 
 
@@ -202,6 +208,8 @@ def acp_import():
     work_dir = job_manager.get_job_work_dir(job_id)
 
     def _run():
+        if Config.DEMO_MODE:
+            return demo_service.simulate_acp_import(host=host)
         return acp_service.run_acp_import(
             host=host,
             xml_config_path=xml_config,
@@ -245,6 +253,11 @@ def run_averify():
     work_dir = job_manager.get_job_work_dir(job_id)
 
     def _run():
+        if Config.DEMO_MODE:
+            return demo_service.simulate_averify(
+                source_env=source_env,
+                target_env=target_env
+            )
         return averify_service.run_averify(
             host=host,
             source_env=source_env,
