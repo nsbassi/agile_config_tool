@@ -1,0 +1,529 @@
+==================================================================
+==================================================================
+======================== Start of Program ========================
+==================================================================
+==================================================================
+
+Agile(TM) ACP CopyConfig (Version ACP 9.3.6 (Build 01))
+
+Run Start Date: Jan 5, 2026 9:32:16 AM
+
+======================== Program Settings ========================
+
+	-debug              []
+	-D                  [acp.method=export, src.ref=dev, tgt.ref=dev]
+	Property File       []
+
+==================================================================
+
+======================= Program Properties =======================
+
+	Miscellaneous Properties
+		global.properties.filename:                                                                                                   (/sw/ams/agile/acpwork936/classes/project.properties)
+		common.properties.filename:                                                                                                   (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Program Information
+		acp.program.name:                                 ACP CopyConfig                                                              (program)
+		acp.program.version:                              ACP 9.3.6 (Build 01)                                                        (program)
+		acp.run.date:                                     20260105                                                                    (program)
+		acp.run.time:                                     093216                                                                      (program)
+		acp.run.datetime:                                 20260105_093216                                                             (program)
+		acp.method:                                       export                                                                      (command-line)
+		acp.debug:                                        false                                                                       (program)
+		acp.verbose:                                      false                                                                       (program)
+
+	Objects
+		objects.suppress.skipped:                         false                                                                       (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Source Data Source
+		src.ref:                                          dev                                                                         (command-line)
+		src.type:                                         agile                                                                       (program)
+		src.name (dev.name):                              dev                                                                         (/sw/ams/agile/acpwork936/classes/project.properties)
+		src.url (dev.url):                                http://ncorp-amsdev-01.ranbaxy.com:7001/Agile                               (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Target Data Source
+		tgt.ref:                                          dev                                                                         (command-line)
+		tgt.type:                                         xml                                                                         (program)
+		tgt.name (dev.name):                              dev                                                                         (/sw/ams/agile/acpwork936/classes/project.properties)
+		tgt.xml (dev.xml):                                export_dev.agl                                                              (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Control File
+		control.filename:                                 config.xml                                                                  (program)
+
+	Process Log
+		log.process.filename:                             export.log (${acp.method}.log)                                              (program)
+		log.process.open.mode:                            overwrite                                                                   (program)
+		log.process.format:                               text                                                                        (program)
+
+	Error Log
+		log.error.filename:                               export.err (${acp.method}.err)                                              (program)
+		log.error.open.mode:                              overwrite                                                                   (program)
+		log.error.format:                                 text                                                                        (program)
+
+	Verbose Log
+		log.verbose.filename:                             exportVerbose.log (${acp.method}Verbose.log)                                (program)
+		log.verbose.open.mode:                            overwrite                                                                   (program)
+		log.verbose.format:                               text                                                                        (program)
+
+==================================================================
+
+======================== Control Settings ========================
+
+	Configuration Type:   ACS Destination                        (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Event                              (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Filter                             (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Format Library                     (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Package Service                    (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Response Service                   (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Subscriber                         (Not Configured)
+
+
+
+
+	Configuration Type:   Account Policy                         (Not Configured)
+
+
+
+
+	Configuration Type:   AutoNumber                             (Not Configured)
+
+
+
+
+	Configuration Type:   Base Class                             (Not Configured)
+
+
+
+
+	Configuration Type:   Character Set                          (Not Configured)
+
+
+
+
+	Configuration Type:   Class                                  (Not Configured)
+
+
+
+
+	Configuration Type:   Company Profile                        (Not Configured)
+
+
+
+
+	Configuration Type:   Criteria                               (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Handler Types   (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Handlers        (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Subscribers     (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Types           (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Events                (Not Configured)
+
+
+
+
+	Configuration Type:   Full Text Search                       (Not Configured)
+
+
+
+
+	Configuration Type:   Global View                            (Not Configured)
+
+
+
+
+	Configuration Type:   List                                   (Not Configured)
+
+
+
+
+	Configuration Type:   My Assignments                         (Not Configured)
+
+
+
+
+	Configuration Type:   Notification Template                  (Not Configured)
+
+
+
+
+	Configuration Type:   PCM RFQ Terms and Conditions           (Not Configured)
+
+
+
+
+	Configuration Type:   PCM Ship to Location                   (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Compliance Rollup Rule Setting    (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Compliance Rollup Scheduling      (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C External Rollup Rule Setting      (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C External Rollup Scheduling        (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Sign Off Message                  (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Supplier Declaration              (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Calendar                           (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Cost Status                        (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Dashboard Management               (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Default Role                       (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Quality Status                     (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Resource Status                    (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Schedule Status                    (Not Configured)
+
+
+
+
+	Configuration Type:   PPM UI Configuration Data              (Not Configured)
+
+
+
+
+	Configuration Type:   Privilege                              (Not Configured)
+
+
+
+
+	Configuration Type:   Process Extension                      (Not Configured)
+
+
+
+
+	Configuration Type:   Reference Object Applications          (Not Configured)
+
+
+
+
+	Configuration Type:   Report                                 (Not Configured)
+
+
+
+
+	Configuration Type:   Role                                   (Not Configured)
+
+
+
+
+	Configuration Type:   Search                                 (Not Configured)
+
+
+
+
+	Configuration Type:   Server Database                        (Not Configured)
+
+
+
+
+	Configuration Type:   Server File Manager                    (Not Configured)
+
+
+
+
+	Configuration Type:   Server Location                        (Not Configured)
+
+
+
+
+	Configuration Type:   Server Preference                      (Not Configured)
+
+
+
+
+	Configuration Type:   Server Task                            (Not Configured)
+
+
+
+
+	Configuration Type:   SmartRule                              (Not Configured)
+
+
+
+
+	Configuration Type:   Subclass                               
+
+	   File Prefix:                subclass_
+	   Objects Per File:           1000
+	   PX Association Rule:        replace
+
+	   Include Patterns:           
+		Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*
+
+		Specialization Type = Items:
+		     1) .*Artwork.*
+
+
+
+
+	Configuration Type:   Supplier Group                         (Not Configured)
+
+
+
+
+	Configuration Type:   Tab Display Configuration              (Not Configured)
+
+
+
+
+	Configuration Type:   Unit of Measure Family                 (Not Configured)
+
+
+
+
+	Configuration Type:   User                                   (Not Configured)
+
+
+
+
+	Configuration Type:   User Group                             (Not Configured)
+
+
+
+
+	Configuration Type:   Viewers and Files                      (Not Configured)
+
+
+
+
+	Configuration Type:   Workflow                               (Not Configured)
+
+
+==================================================================
+
+======================== Program Actions  ========================
+
+	Copy Objects:       Configured
+	Rename Objects:     Not Configured
+	Delete Objects:     Not Configured
+
+==================================================================
+
+============================ Subclass ============================
+
+	Action    Result                    Configuration Object                                                       
+	-------   -----------------------   ---------------------------------------------------------------------------
+	Export    Succeeded                 Changes.Change Orders.Artwork Approval Sheet
+	Skipped                             Changes.Change Orders.DFCO
+	Skipped                             Changes.Change Orders.Document Release Note
+	Skipped                             Changes.Change Orders.ECO
+	Skipped                             Changes.Change Orders.Layout Approval
+	Skipped                             Changes.Change Requests.Bar Code/GTIN Request
+	Skipped                             Changes.Change Requests.Grid Release Note
+	Skipped                             Changes.Change Requests.Proof Review
+	Skipped                             Changes.Change Requests.Work Order
+	Skipped                             Changes.Deviations.Deviation
+	Skipped                             Changes.Price Change Orders.PCO
+	Skipped                             Changes.Registration to Commercial.Artwork Approval Sheet-Release For Commercial
+	Skipped                             Changes.Site Change Orders.SCO
+	Skipped                             Changes.Stop Ships.Stop Ship
+	Skipped                             Customers.customers.Customer
+	Skipped                             Declarations.Homogeneous Material Declarations.Homogeneous Material Declaration
+	Skipped                             Declarations.IPC 1752-1 Declarations.IPC 1752-1 Declaration
+	Skipped                             Declarations.IPC 1752-2 Declarations.IPC 1752-2 Declaration
+	Skipped                             Declarations.JGPSSI Declarations.JGPSSI Declaration
+	Skipped                             Declarations.Part Declarations.Part Declaration
+	Skipped                             Declarations.Substance Declarations.Substance Declaration
+	Skipped                             Declarations.Supplier Declarations of Conformance.Supplier Declaration of Conformance
+	Skipped                             Discussions.discussions.Discussion
+	Skipped                             File Folders.Designs.Design
+	Skipped                             File Folders.File folders.File Folder
+	Skipped                             File Folders.File folders.File Share
+	Skipped                             File Folders.File folders.Markup
+	Skipped                             File Folders.File folders.PPM File Folder
+	Skipped                             Items.Documents.API Report
+	Export    Succeeded                 Items.Documents.Artwork
+	Skipped                             Items.Documents.Certificate
+	Skipped                             Items.Documents.Document
+	Skipped                             Items.Documents.Document Template
+	Skipped                             Items.Documents.Layout
+	Skipped                             Items.Documents.Master or Protocol Document
+	Skipped                             Items.Documents.Method Transfer Sheet
+	Skipped                             Items.Documents.Pack Style
+	Skipped                             Items.Documents.Package Document
+	Skipped                             Items.Documents.Report
+	Skipped                             Items.Documents.Validation Document
+	Skipped                             Items.Parts.DF Product
+	Skipped                             Items.Parts.DFProduct-Market
+	Skipped                             Items.Parts.DFProduct-Strength
+	Skipped                             Items.Parts.Grid
+	Skipped                             Items.Parts.Model
+	Skipped                             Items.Parts.Option Class
+	Skipped                             Items.Parts.Part
+	Skipped                             Manufacturer Parts.Manufacturer parts.Manufacturer Part
+	Skipped                             Manufacturers.manufacturers.Manufacturer
+	Skipped                             Packages.packages.Package
+	Skipped                             Part Groups.Part groups.Commodity
+	Skipped                             Part Groups.Part groups.Item Group
+	Skipped                             Part Groups.Part groups.Part Family
+	Skipped                             Prices.Published Prices.Contract
+	Skipped                             Prices.Published Prices.Published Price
+	Skipped                             Prices.Quote Histories.Quote History
+	Skipped                             Product Service Requests.Non-Conformance Reports.NCR
+	Skipped                             Product Service Requests.Problem Reports.Problem Report
+	Skipped                             Projects.Activities.API Project
+	Skipped                             Projects.Activities.Cost Task
+	Skipped                             Projects.Activities.DF Project
+	Skipped                             Projects.Activities.Phase
+	Skipped                             Projects.Activities.Printer Assignment Task
+	Skipped                             Projects.Activities.Task
+	Skipped                             Projects.Gates.DG1
+	Skipped                             Projects.Gates.DG2
+	Skipped                             Projects.Gates.DG3
+	Skipped                             Projects.Gates.DG4
+	Skipped                             Projects.Gates.DG5
+	Skipped                             Projects.Gates.DG6
+	Skipped                             Projects.Gates.Gate
+	Skipped                             Projects.Gates.Milestone
+	Skipped                             Quality Change Requests.Audits.Audit
+	Skipped                             Quality Change Requests.Corrective and Preventive Actions.CAPA
+	Skipped                             Reports.Custom Reports.Custom Report
+	Skipped                             Reports.External Reports.External Report
+	Skipped                             Reports.Standard Reports.Administrator Report
+	Skipped                             Reports.Standard Reports.Standard Report
+	Skipped                             Requests for Quote.Requests for quote.RFQ
+	Skipped                             RFQ Responses.RFQ responses.RFQ Response
+	Skipped                             Sites.sites.Site
+	Skipped                             Sourcing Projects.Sourcing projects.Sourcing Project
+	Skipped                             Specifications.specifications.Specification
+	Skipped                             Substances.Materials.Material
+	Skipped                             Substances.Subparts.Subpart
+	Skipped                             Substances.Substance Groups.Substance Group
+	Skipped                             Substances.substances.Substance
+	Skipped                             Suppliers.suppliers.Broker
+	Skipped                             Suppliers.suppliers.Component Manufacturer
+	Skipped                             Suppliers.suppliers.Contract Manufacturer
+	Skipped                             Suppliers.suppliers.Distributor
+	Skipped                             Suppliers.suppliers.Manufacturer Representative
+	Skipped                             Suppliers.suppliers.Printer
+	Skipped                             Transfer Orders.Automated Transfer Orders.ATO
+	Skipped                             Transfer Orders.Content Transfer Orders.CTO
+	Skipped                             User Groups.Functional Teams.Functional Team
+	Skipped                             User Groups.User groups.User Group
+	Skipped                             Users.users.User
+
+
+
+
+
+	Pattern Matching Statistics
+	---------------------------
+	   Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*:               1
+
+	   Specialization Type = Items:
+		     1) .*Artwork.*:                              1
+
+	Copy Statistics
+	---------------
+	   Objects Attempted:             98
+	   Objects Skipped:               96
+	   Objects No Action Needed:       0
+	   Objects Not Licensed:           0
+	   Objects Exported:               2
+	   Objects with Warnings:          0
+	   Objects Failed:                 0
+
+	   Processing Time:            0:0:0:2.953
+
+==================================================================
+
+
+
+Run End Date: Jan 5, 2026 9:32:32 AM
+Run Duration: 0:0:0:16.386
+
+==================================================================
+==================================================================
+========================= End of Program =========================
+==================================================================
+==================================================================

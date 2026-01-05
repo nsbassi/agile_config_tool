@@ -1,0 +1,131 @@
+==================================================================
+==================================================================
+====================== File Copy Operation ======================
+==================================================================
+==================================================================
+
+Agile File Copy Utility (Version 2.1.0)
+
+Run Start Date: Jan 5, 2026 10:15:30 AM
+
+======================== Operation Settings ======================
+
+	Operation Type:         File Copy
+	Target Environment:     QA
+	Mode:                   Local
+	Configuration File:     filecopy_config.xml
+
+==================================================================
+
+======================= Connection Details =======================
+
+	Target Server:          ncorp-amsval-03.ranbaxy.com
+	Target Port:            7001
+	Target URL:             http://ncorp-amsval-03.ranbaxy.com:7001/Agile
+	Authentication:         Successful
+	User:                   filecopy_admin
+	Connection Time:        0.842s
+
+==================================================================
+
+======================= Configuration Loaded =====================
+
+	Source Base Path:       /sw/ams/agile/filestore/dev
+	Target Base Path:       /sw/ams/agile/filestore/qa
+	Include Patterns:       
+		1) *.pdf
+		2) *.doc
+		3) *.docx
+		4) *.xls
+		5) *.xlsx
+		6) *.jpg
+		7) *.png
+	
+	Exclude Patterns:       
+		1) *_temp*
+		2) *_backup*
+	
+	Overwrite Policy:       Skip Existing
+	Verify After Copy:      Enabled
+	Maintain Timestamps:    Enabled
+
+==================================================================
+
+======================== Copy Operations =========================
+
+	Processing Directory:   /attachments
+	Files Found:            45
+	Files Copied:           42
+	Files Skipped:          3
+	Files Failed:           0
+
+	Processing Directory:   /workflows
+	Files Found:            28
+	Files Copied:           28
+	Files Skipped:          0
+	Files Failed:           0
+
+	Processing Directory:   /reports
+	Files Found:            67
+	Files Copied:           63
+	Files Skipped:          4
+	Files Failed:           0
+
+	Processing Directory:   /custom_objects
+	Files Found:            15
+	Files Copied:           15
+	Files Skipped:          0
+	Files Failed:           0
+
+	Processing Directory:   /templates
+	Files Found:            32
+	Files Copied:           30
+	Files Skipped:          2
+	Files Failed:           0
+
+==================================================================
+
+======================== Copy Statistics =========================
+
+	Total Directories Processed:    5
+	Total Files Found:              187
+	Total Files Copied:             187
+	Total Files Skipped:            0
+	Total Files Failed:             0
+	Total Size Copied:              342.7 MB
+	Average Copy Speed:             15.2 MB/s
+	
+	Verification Results:
+		Files Verified:             178
+		Verification Passed:        178
+		Verification Failed:        0
+
+==================================================================
+
+========================= File Details ===========================
+
+	Skipped Files (Already Exist):
+	
+
+==================================================================
+
+======================== Summary =================================
+
+	Operation:              File Copy
+	Status:                 SUCCESS
+	Total Files Processed:  187
+	Files Successfully Copied: 187 (100%)
+	Files Skipped:          0 (0%)
+	Files Failed:           0 (0%)
+	Processing Time:        22.5 seconds
+
+==================================================================
+
+Run End Date: Jan 5, 2026 10:15:52 AM
+Run Duration: 0:0:0:22.500
+
+==================================================================
+==================================================================
+==================== End of File Copy Operation ==================
+==================================================================
+==================================================================

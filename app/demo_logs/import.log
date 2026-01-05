@@ -1,0 +1,570 @@
+==================================================================
+==================================================================
+======================== Start of Program ========================
+==================================================================
+==================================================================
+
+Agile(TM) ACP CopyConfig (Version ACP 9.3.6 (Build 01))
+
+Run Start Date: Jan 5, 2026 9:37:28 AM
+
+======================== Program Settings ========================
+
+	-debug              []
+	-D                  [acp.method=import, src.ref=dev, tgt.ref=qa]
+	Property File       []
+
+==================================================================
+
+======================= Program Properties =======================
+
+	Miscellaneous Properties
+		global.properties.filename:                                                                                                   (/sw/ams/agile/acpwork936/classes/project.properties)
+		common.properties.filename:                                                                                                   (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Program Information
+		acp.program.name:                                 ACP CopyConfig                                                              (program)
+		acp.program.version:                              ACP 9.3.6 (Build 01)                                                        (program)
+		acp.run.date:                                     20260105                                                                    (program)
+		acp.run.time:                                     093728                                                                      (program)
+		acp.run.datetime:                                 20260105_093728                                                             (program)
+		acp.method:                                       import                                                                      (command-line)
+		acp.debug:                                        false                                                                       (program)
+		acp.verbose:                                      false                                                                       (program)
+
+	Objects
+		objects.suppress.skipped:                         false                                                                       (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Source Data Source
+		src.ref:                                          dev                                                                         (command-line)
+		src.type:                                         xml                                                                         (program)
+		src.name (dev.name):                              dev                                                                         (/sw/ams/agile/acpwork936/classes/project.properties)
+		src.xml (dev.xml):                                export_dev.agl                                                              (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Target Data Source
+		tgt.ref:                                          qa                                                                          (command-line)
+		tgt.type:                                         agile                                                                       (program)
+		tgt.name (qa.name):                               qa                                                                          (/sw/ams/agile/acpwork936/classes/project.properties)
+		tgt.url (qa.url):                                 http://ncorp-amsval-03.ranbaxy.com:7001/Agile                               (/sw/ams/agile/acpwork936/classes/project.properties)
+
+	Control File
+		control.filename:                                 config.xml                                                                  (program)
+
+	Process Log
+		log.process.filename:                             import.log (${acp.method}.log)                                              (program)
+		log.process.open.mode:                            overwrite                                                                   (program)
+		log.process.format:                               text                                                                        (program)
+
+	Error Log
+		log.error.filename:                               import.err (${acp.method}.err)                                              (program)
+		log.error.open.mode:                              overwrite                                                                   (program)
+		log.error.format:                                 text                                                                        (program)
+
+	Verbose Log
+		log.verbose.filename:                             importVerbose.log (${acp.method}Verbose.log)                                (program)
+		log.verbose.open.mode:                            overwrite                                                                   (program)
+		log.verbose.format:                               text                                                                        (program)
+
+==================================================================
+
+======================== Control Settings ========================
+
+	Configuration Type:   ACS Destination                        (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Event                              (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Filter                             (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Format Library                     (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Package Service                    (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Response Service                   (Not Configured)
+
+
+
+
+	Configuration Type:   ACS Subscriber                         (Not Configured)
+
+
+
+
+	Configuration Type:   Account Policy                         (Not Configured)
+
+
+
+
+	Configuration Type:   Account Policy (Associations)          (Not Configured)
+
+
+
+
+	Configuration Type:   AutoNumber                             (Not Configured)
+
+
+
+
+	Configuration Type:   AutoNumber (Associations)              (Not Configured)
+
+
+
+
+	Configuration Type:   Base Class                             (Not Configured)
+
+
+
+
+	Configuration Type:   Character Set                          (Not Configured)
+
+
+
+
+	Configuration Type:   Class                                  (Not Configured)
+
+
+
+
+	Configuration Type:   Class (User and User Group Only)       (Not Configured)
+
+
+
+
+	Configuration Type:   Company Profile                        (Not Configured)
+
+
+
+
+	Configuration Type:   Criteria                               (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Handler Types   (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Handlers        (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Subscribers     (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Event Types           (Not Configured)
+
+
+
+
+	Configuration Type:   Event Management Events                (Not Configured)
+
+
+
+
+	Configuration Type:   Full Text Search                       (Not Configured)
+
+
+
+
+	Configuration Type:   Global View                            (Not Configured)
+
+
+
+
+	Configuration Type:   List                                   (Not Configured)
+
+
+
+
+	Configuration Type:   My Assignments                         (Not Configured)
+
+
+
+
+	Configuration Type:   Notification Template                  (Not Configured)
+
+
+
+
+	Configuration Type:   PCM RFQ Terms and Conditions           (Not Configured)
+
+
+
+
+	Configuration Type:   PCM Ship to Location                   (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Compliance Rollup Rule Setting    (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Compliance Rollup Scheduling      (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C External Rollup Rule Setting      (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C External Rollup Scheduling        (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Sign Off Message                  (Not Configured)
+
+
+
+
+	Configuration Type:   PG&C Supplier Declaration              (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Calendar                           (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Cost Status                        (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Dashboard Management               (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Default Role                       (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Quality Status                     (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Resource Status                    (Not Configured)
+
+
+
+
+	Configuration Type:   PPM Schedule Status                    (Not Configured)
+
+
+
+
+	Configuration Type:   PPM UI Configuration Data              (Not Configured)
+
+
+
+
+	Configuration Type:   Privilege                              (Not Configured)
+
+
+
+
+	Configuration Type:   Process Extension                      (Not Configured)
+
+
+
+
+	Configuration Type:   Reference Object Applications          (Not Configured)
+
+
+
+
+	Configuration Type:   Report                                 (Not Configured)
+
+
+
+
+	Configuration Type:   Role                                   (Not Configured)
+
+
+
+
+	Configuration Type:   Role (Associations)                    (Not Configured)
+
+
+
+
+	Configuration Type:   Search                                 (Not Configured)
+
+
+
+
+	Configuration Type:   Server Database                        (Not Configured)
+
+
+
+
+	Configuration Type:   Server File Manager                    (Not Configured)
+
+
+
+
+	Configuration Type:   Server Location                        (Not Configured)
+
+
+
+
+	Configuration Type:   Server Preference                      (Not Configured)
+
+
+
+
+	Configuration Type:   Server Task                            (Not Configured)
+
+
+
+
+	Configuration Type:   SmartRule                              (Not Configured)
+
+
+
+
+	Configuration Type:   Subclass                               
+
+	   File Prefix:                subclass_
+	   Objects Per File:           1000
+	   PX Association Rule:        replace
+
+	   Include Patterns:           
+		Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*
+
+		Specialization Type = Items:
+		     1) .*Artwork.*
+
+
+
+
+	Configuration Type:   Subclass (Create)                      
+
+	   File Prefix:                subclass_
+	   Objects Per File:           1000
+	   PX Association Rule:        replace
+
+	   Include Patterns:           
+		Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*
+
+		Specialization Type = Items:
+		     1) .*Artwork.*
+
+
+
+
+	Configuration Type:   Subclass (User and User Group Only)    
+
+	   File Prefix:                subclass_
+	   Objects Per File:           1000
+	   PX Association Rule:        replace
+
+	   Include Patterns:           
+		Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*
+
+		Specialization Type = Items:
+		     1) .*Artwork.*
+
+
+
+
+	Configuration Type:   Supplier Group                         (Not Configured)
+
+
+
+
+	Configuration Type:   Tab Display Configuration              (Not Configured)
+
+
+
+
+	Configuration Type:   Unit of Measure Family                 (Not Configured)
+
+
+
+
+	Configuration Type:   User                                   (Not Configured)
+
+
+
+
+	Configuration Type:   User (Associations)                    (Not Configured)
+
+
+
+
+	Configuration Type:   User Group                             (Not Configured)
+
+
+
+
+	Configuration Type:   User Group (Associations)              (Not Configured)
+
+
+
+
+	Configuration Type:   Viewers and Files                      (Not Configured)
+
+
+
+
+	Configuration Type:   Workflow                               (Not Configured)
+
+
+
+
+	Configuration Type:   Workflow (Create)                      (Not Configured)
+
+
+==================================================================
+
+======================== Program Actions  ========================
+
+	Copy Objects:       Configured
+	Rename Objects:     Not Configured
+	Delete Objects:     Not Configured
+
+==================================================================
+
+======================= Subclass (Create)  =======================
+
+	Action    Result                    Configuration Object                                                       
+	-------   -----------------------   ---------------------------------------------------------------------------
+	Update    No Action Needed          Changes.Change Orders.Artwork Approval Sheet
+	Update    No Action Needed          Items.Documents.Artwork
+
+
+
+
+
+	Pattern Matching Statistics
+	---------------------------
+	   Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*:               1
+
+	   Specialization Type = Items:
+		     1) .*Artwork.*:                              1
+
+	Copy Statistics
+	---------------
+	   Objects Attempted:              2
+	   Objects Skipped:                0
+	   Objects No Action Needed:       2
+	   Objects Not Licensed:           0
+	   Objects Created:                0
+	   Objects Updated:                0
+	   Objects with Warnings:          0
+	   Objects Failed:                 0
+
+	   Processing Time:            0:0:0:0.478
+
+==================================================================
+
+============== Subclass (User and User Group Only)  ==============
+
+	Action    Result                    Configuration Object                                                       
+	-------   -----------------------   ---------------------------------------------------------------------------
+
+
+
+
+
+	Pattern Matching Statistics
+	---------------------------
+	   Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*:               0
+
+	   Specialization Type = Items:
+		     1) .*Artwork.*:                              0
+
+	Copy Statistics
+	---------------
+	   Objects Attempted:              0
+	   Objects Skipped:                0
+	   Objects No Action Needed:       0
+	   Objects Not Licensed:           0
+	   Objects Created:                0
+	   Objects Updated:                0
+	   Objects with Warnings:          0
+	   Objects Failed:                 0
+
+	   Processing Time:            0:0:0:0.285
+
+==================================================================
+
+============================ Subclass ============================
+
+	Action    Result                    Configuration Object                                                       
+	-------   -----------------------   ---------------------------------------------------------------------------
+	Update    Succeeded                 Changes.Change Orders.Artwork Approval Sheet
+		   1) ERROR: The List object identified by the name "Pack Style (API Name=PackStyle)" could not be found.
+
+
+	Update    Succeeded                 Items.Documents.Artwork
+
+
+
+
+
+	Pattern Matching Statistics
+	---------------------------
+	   Specialization Type = Change Orders:
+		     1) .*Artwork Approval Sheet.*:               1
+
+	   Specialization Type = Items:
+		     1) .*Artwork.*:                              1
+
+	Copy Statistics
+	---------------
+	   Objects Attempted:              2
+	   Objects Skipped:                0
+	   Objects No Action Needed:       0
+	   Objects Not Licensed:           0
+	   Objects Created:                0
+	   Objects Updated:                2
+	   Objects with Warnings:          0
+	   Objects Failed:                 0
+
+	   Processing Time:            0:0:0:6.784
+
+==================================================================
+
+
+
+Run End Date: Jan 5, 2026 9:38:09 AM
+Run Duration: 0:0:0:40.976
+
+==================================================================
+==================================================================
+========================= End of Program =========================
+==================================================================
+==================================================================
