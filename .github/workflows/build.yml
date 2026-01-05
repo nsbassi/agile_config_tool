@@ -18,20 +18,20 @@ jobs:
     steps:
       - name: Install dependencies for Rocky Linux 9
         run: |
-          dnf install -y python3.11 python3.11-pip git gcc zlib-devel
+          dnf install -y python3.9 python3.9-pip git gcc zlib-devel
 
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Install Python dependencies
         run: |
-          python3.11 -m pip install --upgrade pip
-          python3.11 -m pip install -r requirements.txt
+          python3.9 -m pip install --upgrade pip
+          python3.9 -m pip install -r requirements.txt
 
       - name: Build using PyInstaller
         run: |
-          python3.11 -m pip install pyinstaller
-          python3.11 -m PyInstaller --onefile --name agile_acp_tool \
+          python3.9 -m pip install pyinstaller
+          python3.9 -m PyInstaller --onefile --name agile_acp_tool \
             --add-data "app/static:app/static" \
             --add-data "app/demo_logs:app/demo_logs" \
             run.py
